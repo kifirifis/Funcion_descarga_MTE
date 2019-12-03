@@ -159,7 +159,7 @@ mte_get <- function(
       set_values(f.asig, "nom_materia" = f.asig$fields$nom_materia$options[i + 1]) # **
     # el más uno es por el campo vacio
     
-    s.asig <- submit_form(s.opt, f.asig2, "submit")
+    s.asig <- submit_form(s.opt, f.asig2, "btnsubmit")
     
     # hay que sacar las fechas
     tx <- s.asig %>% read_html(encoding = "UTF-8") %>%
@@ -222,13 +222,6 @@ mte_get <- function(
     if (any(arch <= 0 | arch > length(nms)))
       stop("El nº referido al archivo es incorrecto.")
     
-    # debug
-    links <<-links
-    nms <<- nms
-    s.asig <<- s.asig
-    sobrescribir <<- sobrescribir
-    d.name <<- d.name
-    
     for (i2 in arch) {
       
       # descarga
@@ -252,7 +245,7 @@ mte_get <- function(
       
       message(paste0("Archivo:  ",nms[i2]," descargado."))
       }, error = function(e) {
-        message(paste0("El archivo ",nsm[i2],"no se ha podido descargar!!"))
+        message(paste0("El archivo ",nms[i2],"no se ha podido descargar!!"))
       })
       
     }
